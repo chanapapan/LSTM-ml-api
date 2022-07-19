@@ -19,6 +19,10 @@ docker run -p 5000:5000 -d flask_docker # prediction_app.py automatically starts
 
 Then From local computer
 
-curl.exe --data-binary "{'var1' : 'var1'}" http://localhost:5000/get_json
+curl.exe -H 'Content-Type: application/json' -d '{\"var1\" : \"value\"}'  http://localhost:5000/get_json
 
-error : Content-Type not supported!
+curl.exe -H 'Content-Type: application/json' -d "@ex_input.json"  http://localhost:5000/get_json
+
+windows -*-
+
+
