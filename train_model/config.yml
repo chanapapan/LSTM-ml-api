@@ -1,0 +1,13 @@
+data_folder   : "./data/"
+vocab_path    : "../save/vocab.pkl"
+embed_dim     : 300
+hidden_dim    : 256
+num_layers    : 2
+bidirectional : True
+dropout       : 0.5
+output_dim    : 4 
+batch_size    : 128
+num_epochs    : 30
+lr            : 0.00002 # empirically set
+num_workers   : 32
+model_path    : "../save/best_LSTM_weights.pth"
