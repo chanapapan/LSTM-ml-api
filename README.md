@@ -1,33 +1,74 @@
 # LSTM-ml-api
 
-1.) Run train_mode/1-sentiment-analysis-LSTM.ipynb to train and save the best model
+This repository contains the code for Sentiment Analysis on the WiseSight dataset using an LSTM model as well as for deploying this model on docker or AWS Elastic Beanstalk using FlaskAPI.
 
-2.) Local Test
+First, download the WiseSight dataset <code>train.txt</code> , <code>train_label.txt</code>, <code>test.txt</code> and <code>test_label.txt</code> from https://github.com/PyThaiNLP/wisesight-sentiment/tree/master/kaggle-competition into <code>01-train_model/data/</code>
 
-Run docker_api_test/inference_app.py
+## 01-train_model
 
-Run test_api.py
+This folder contains the files for training the model and saving the best model which will be used for the API.
 
-3.) Docker Test
+- <code>1-sentiment-analysis-LSTM.ipynb</code> contains the code for training, validation and testing the LSTM model. The vocabulary and the weights of the best model are saved in <code>train_model/save/</code>
 
-docker image build -t flask_docker .
+- <code>2-inference.ipynb</code> import the model class from <code>model_and_utils.py</code> and load the vocab and best weights for prediction.
 
-docker run -p 5000:5000 -d flask_docker
+- <code>config.yml</code> contains the parameters used for model traning and inference
 
-Then From local computer
 
-curl.exe -H 'Content-Type: application/json' -d "@../input.json"  http://localhost:5000/inference
+## 02-local_api_test
 
-4.) AWS Elastic Beanstalk
+This folder contains the files required to run the flask application on local computer and on Docker.
 
-Upload to-eb.zip
+<code>inference_app.py</code> define <code>/inference</code> route that will take .json file as input and return .json of the prediction 
 
-* succeeded with test code for POST and GET json
-curl.exe -H 'Content-Type: application/json' -d "@ex_input.json"  http://sentimentanalysisapp-env.eba-gfiqdn9i.us-west-2.elasticbeanstalk.com/get_json
+### To run the application on local
 
-** but got error when pip installing requirements for the real sentiment analysis inference
+- <code>python .\inference_app.py</code> # start the local app
 
-2022/07/19 16:25:53.484392 [ERROR] An error occurred during execution of command [app-deploy] - [InstallDependency]. Stop running the command. Error: fail to install dependencies with requirements.txt file with error Command /bin/sh -c /var/app/venv/staging-LQM1lest/bin/pip install -r requirements.txt failed with error exit status 2. Stderr:ERROR: Exception:
+- <code>python .\test_api.py</code> # test the local app from local
 
-LOG FILE
-https://elasticbeanstalk-us-east-2-128408982530.s3.us-east-2.amazonaws.com/resources/environments/logs/tail/e-skpbh9thdf/i-015fa8c2e68eb99ae/TailLogs-1658248235920.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220719T163037Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=AKIAIKOSE77CLMRUGX3Q%2F20220719%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Signature=a2dd06921b7fbdd05f03612a03ebe7ea9afbd15c596cfd62aa5557afbc65e0e4
+<img src="https://user-images.githubusercontent.com/69254427/180448051-a2a9266c-bafa-4b41-82cf-15c57eae4055.jpg" width="90%"></img> 
+
+### To run the application on Docker
+
+- <code>docker image build -t flask_docker .</code>
+
+- <code>docker run -p 5000:5000  -d flask_docker</code>
+
+- <code>curl.exe -H 'Content-Type: application/json' -d "@../input.json"  http://localhost:5000/inference</code> # send json to application on docker to get the sentiment  prediction
+
+<img src="https://user-images.githubusercontent.com/69254427/180448028-29fa3643-c342-400c-8803-aa7322d5393d.jpg" width="90%"></img> 
+
+## 03-to-eb
+
+This folder contains the files required for deploying the model on AWS Elastic Beanstalk. (**I have stopped the application and deleted the environment on AWS to avoid any fees)
+
+### Steps
+
+- Go to Elastic Beanstalk > "Creat new application" > set "Application Name"
+
+![aws1](https://user-images.githubusercontent.com/69254427/180447732-a27708d3-4cbd-472d-b5c0-d29479cb3701.jpg)
+
+- Select "Platform" as "Python" > "Application Code" > "Upload Your Code"
+
+<img src="https://user-images.githubusercontent.com/69254427/180447984-ab3e4b33-aa47-46f4-9871-b1fcac004209.jpg" width="90%"></img> 
+
+- Set "Scource Code" as "Local" > "Choose file" > ZIP all files in <code>03-to-eb/</code> into <code>to-elasticbean.zip</code> (must contain <code>application.py</code>, <code>requirements.txt</code>, <code>.ebextensions/python.config</code> and other files needed for prediction)
+
+<img src="https://user-images.githubusercontent.com/69254427/180447995-44d3c401-2028-4797-b476-ac3a821c9abf.jpg" width="90%"></img> 
+
+- Go to "Configure more options" > "Modify instances" > set "Root colume type" to "General Purpose (SSD)" > size to 10 GB
+
+<img src="https://user-images.githubusercontent.com/69254427/180448003-800abc25-1d30-4bc4-a8ac-9fd3e12d39a0.jpg" width="90%"></img> 
+
+- "EC2 instance types" > "t2.small"
+
+<img src="https://user-images.githubusercontent.com/69254427/180448011-cb635bf1-e8ba-45bf-b64c-e6a424b0cf05.jpg" width="90%"></img> 
+
+- Create Application & wait until done
+
+<img src="https://user-images.githubusercontent.com/69254427/180448018-2094df2e-5c53-4787-ac29-63ff51ec0844.jpg" width="90%"></img> 
+
+-  <code>curl.exe -H 'Content-Type: application/json' -d "@./input.json"  http://chanapasentimentanalysisapp-env-1.eba-ddggkdwc.us-west-2.elasticbeanstalk.com/inference</code>
+
+<img src="https://user-images.githubusercontent.com/69254427/180448024-47a81a0c-9343-4b3e-87fd-532e39e1454c.jpg" width="90%"></img> 
