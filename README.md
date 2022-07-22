@@ -53,7 +53,7 @@ This folder contains the files required for deploying the model on AWS Elastic B
 
 <img src="https://user-images.githubusercontent.com/69254427/180447984-ab3e4b33-aa47-46f4-9871-b1fcac004209.jpg" width="90%"></img> 
 
-- Set "Scource Code" as "Local" > "Choose file" > Upload <code>to-elasticbean.zip</code> which must contain <code>application.py</code>, <code>requirements.txt</code>, <code>.ebextensions/python.config</code> and other files needed for prediction zipped into one .ZIP file
+- Set "Scource Code" as "Local" > "Choose file" > ZIP all files in <code>03-to-eb/</code> into <code>to-elasticbean.zip</code> (must contain <code>application.py</code>, <code>requirements.txt</code>, <code>.ebextensions/python.config</code> and other files needed for prediction)
 
 <img src="https://user-images.githubusercontent.com/69254427/180447995-44d3c401-2028-4797-b476-ac3a821c9abf.jpg" width="90%"></img> 
 
