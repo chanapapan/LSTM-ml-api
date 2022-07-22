@@ -41,7 +41,7 @@ This folder contains the files required to run the flask application on local co
 
 ## 03-to-eb
 
-This folder contains the files required for deploying the model on AWS Elastic Beanstalk.
+This folder contains the files required for deploying the model on AWS Elastic Beanstalk. (**I have stopped the application and delete the environment on AWS to avoid any fees)
 
 ### Steps
 
