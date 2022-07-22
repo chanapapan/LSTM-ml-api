@@ -2,7 +2,7 @@
 
 This repository contains the code for Sentiment Analysis on the WiseSight dataset using an LSTM model as well as for deploying this model on docker or AWS Elastic Beanstalk via FlaskAPI.
 
-First, download the WiseSight dataset train.txt , train_label.txt, test.txt and test_label.txt from https://github.com/PyThaiNLP/wisesight-sentiment/tree/master/kaggle-competition into 01-train_model/data/
+First, download the WiseSight dataset <code>train.txt</code> , <code>train_label.txt</code>, <code>test.txt</code> and <code>test_label.txt</code> from https://github.com/PyThaiNLP/wisesight-sentiment/tree/master/kaggle-competition into <code>01-train_model/data/</code>
 
 ## 01-train_model
 
