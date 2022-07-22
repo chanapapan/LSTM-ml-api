@@ -8,20 +8,20 @@ First, download the WiseSight dataset <code>train.txt</code> , <code>train_label
 
 This folder contains the files for training the model and saving the best model which will be used for the API.
 
-- <code>1-sentiment-analysis-LSTM.ipynb</code> contains the code for the training, validation and testing the LSTM model. The vocabulary and the weights of the best model are saved.
+- <code>1-sentiment-analysis-LSTM.ipynb</code> contains the code for training, validation and testing the LSTM model. The vocabulary and the weights of the best model are saved in <code>./save</code>
 
-- <code>2-inference.ipynb</code> import the model class from <code>model_and_utils.py</code> for prediction.
+- <code>2-inference.ipynb</code> import the model class from <code>model_and_utils.py</code> and load the vocab and best weights for prediction.
 
 - <code>config.yml</code> contains the parameters used for model traning and inference
 
 
 ## 02-local_api_test
 
-This folder contains the files required to run the flask application on local computer and on docker.
+This folder contains the files required to run the flask application on local computer and on Docker.
 
-<code>inference_app.py</code> define inference route that takes .json file as input and return a .json of the prediction 
+<code>inference_app.py</code> define <code>/inference</code> route that will take .json file as input and return .json of the prediction 
 
-To run the application on local
+### To run the application on local
 
 - <code>python .\inference_app.py</code> # start the local app
 
@@ -29,7 +29,7 @@ To run the application on local
 
 <img src="https://user-images.githubusercontent.com/69254427/180448051-a2a9266c-bafa-4b41-82cf-15c57eae4055.jpg" width="90%"></img> 
 
-To run the application on docker
+### To run the application on Docker
 
 - <code>docker image build -t flask_docker .</code>
 
@@ -43,7 +43,7 @@ To run the application on docker
 
 This folder contains the files required for deploying the model on AWS Elastic Beanstalk.
 
-Steps
+### Steps
 
 - Go to Elastic Beanstalk > "Creat new application" > set "Application Name"
 
@@ -72,6 +72,3 @@ Steps
 -  <code>curl.exe -H 'Content-Type: application/json' -d "@./input.json"  http://chanapasentimentanalysisapp-env-1.eba-ddggkdwc.us-west-2.elasticbeanstalk.com/inference</code>
 
 <img src="https://user-images.githubusercontent.com/69254427/180448024-47a81a0c-9343-4b3e-87fd-532e39e1454c.jpg" width="90%"></img> 
-
-
- <code>OP_datasets</code> folder
