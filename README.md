@@ -8,34 +8,34 @@ First, download the WiseSight dataset train.txt , train_label.txt, test.txt and 
 
 This folder contains the files for training the model and saving the best model which will be used for the API.
 
-- 1-sentiment-analysis-LSTM.ipynb contains the code for the training, validation and testing the LSTM model. The vocabulary and the weights of the best model are saved.
+- <code>1-sentiment-analysis-LSTM.ipynb</code> contains the code for the training, validation and testing the LSTM model. The vocabulary and the weights of the best model are saved.
 
-- 2-inference.ipynb import the model class from model_and_utils.py for prediction.
+- <code>2-inference.ipynb</code> import the model class from <code>model_and_utils.py</code> for prediction.
 
-- config.yml contains the parameters used for model traning and inference
+- <code>config.yml</code> contains the parameters used for model traning and inference
 
 
 ## 02-local_api_test
 
 This folder contains the files required to run the flask application on local computer and on docker.
 
-inference_app.py define inference route that takes .json file as input and return a .json of the prediction 
+<code>inference_app.py</code> define inference route that takes .json file as input and return a .json of the prediction 
 
 To run the application on local
 
-- python .\inference_app.py # start the local app
+- <code>python .\inference_app.py</code> # start the local app
 
-- python .\test_api.py # test the local app from local
+- <code>python .\test_api.py</code> # test the local app from local
 
 <img src="https://user-images.githubusercontent.com/69254427/180448051-a2a9266c-bafa-4b41-82cf-15c57eae4055.jpg" width="90%"></img> 
 
 To run the application on docker
 
-- docker image build -t flask_docker .
+- <code>docker image build -t flask_docker .</code>
 
-- docker run -p 5000:5000  -d flask_docker
+- <code>docker run -p 5000:5000  -d flask_docker</code>
 
-- curl.exe -H 'Content-Type: application/json' -d "@../input.json"  http://localhost:5000/inference # send json to application on docker to get the sentiment  prediction
+- <code>curl.exe -H 'Content-Type: application/json' -d "@../input.json"  http://localhost:5000/inference</code> # send json to application on docker to get the sentiment  prediction
 
 <img src="https://user-images.githubusercontent.com/69254427/180448028-29fa3643-c342-400c-8803-aa7322d5393d.jpg" width="90%"></img> 
 
@@ -45,23 +45,23 @@ This folder contains the files required for deploying the model on AWS Elastic B
 
 Steps
 
-- Go to Elastic Beanstalk > "Creat new application" > Edit "Application Name"
+- Go to Elastic Beanstalk > "Creat new application" > set "Application Name"
 
 ![aws1](https://user-images.githubusercontent.com/69254427/180447732-a27708d3-4cbd-472d-b5c0-d29479cb3701.jpg)
 
-- Select Platform as "Python" > Application Code "Upload Your Code" > 
+- Select "Platform" as "Python" > "Application Code" > "Upload Your Code"
 
 <img src="https://user-images.githubusercontent.com/69254427/180447984-ab3e4b33-aa47-46f4-9871-b1fcac004209.jpg" width="90%"></img> 
 
-- Scource Code "Local" > Choose file > Upload to-elasticbean.zip which must contain application.py, requirements.txt, .ebextensions/python.config and other files needed for prediction zipped into one .ZIP file
+- Set "Scource Code" as "Local" > "Choose file" > Upload <code>to-elasticbean.zip</code> which must contain <code>application.py</code>, <code>requirements.txt</code>, <code>.ebextensions/python.config</code> and other files needed for prediction zipped into one .ZIP file
 
 <img src="https://user-images.githubusercontent.com/69254427/180447995-44d3c401-2028-4797-b476-ac3a821c9abf.jpg" width="90%"></img> 
 
-- Go to "Configure more options" > Modify instances > set Root colume type to General Purpose (SSD) > size to 10 GB
+- Go to "Configure more options" > "Modify instances" > set "Root colume type" to "General Purpose (SSD)" > size to 10 GB
 
 <img src="https://user-images.githubusercontent.com/69254427/180448003-800abc25-1d30-4bc4-a8ac-9fd3e12d39a0.jpg" width="90%"></img> 
 
-- EC2 instance types > t2.small
+- "EC2 instance types" > "t2.small"
 
 <img src="https://user-images.githubusercontent.com/69254427/180448011-cb635bf1-e8ba-45bf-b64c-e6a424b0cf05.jpg" width="90%"></img> 
 
@@ -69,6 +69,9 @@ Steps
 
 <img src="https://user-images.githubusercontent.com/69254427/180448018-2094df2e-5c53-4787-ac29-63ff51ec0844.jpg" width="90%"></img> 
 
-- curl.exe -H 'Content-Type: application/json' -d "@./input.json"  http://chanapasentimentanalysisapp-env-1.eba-ddggkdwc.us-west-2.elasticbeanstalk.com/inference
+-  <code>curl.exe -H 'Content-Type: application/json' -d "@./input.json"  http://chanapasentimentanalysisapp-env-1.eba-ddggkdwc.us-west-2.elasticbeanstalk.com/inference</code>
 
 <img src="https://user-images.githubusercontent.com/69254427/180448024-47a81a0c-9343-4b3e-87fd-532e39e1454c.jpg" width="90%"></img> 
+
+
+ <code>OP_datasets</code> folder
