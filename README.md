@@ -8,7 +8,7 @@ First, download the WiseSight dataset <code>train.txt</code> , <code>train_label
 
 This folder contains the files for training the model and saving the best model which will be used for the API.
 
-- <code>1-sentiment-analysis-LSTM.ipynb</code> contains the code for training, validation and testing the LSTM model. The vocabulary and the weights of the best model are saved in <code>train_model/save</code>
+- <code>1-sentiment-analysis-LSTM.ipynb</code> contains the code for training, validation and testing the LSTM model. The vocabulary and the weights of the best model are saved in <code>train_model/save/</code>
 
 - <code>2-inference.ipynb</code> import the model class from <code>model_and_utils.py</code> and load the vocab and best weights for prediction.
 
