@@ -40,7 +40,7 @@ To run the application on docker
 
 This folder contains the files required for deploying the model on AWS Elastic Beanstalk.
 
-![image]https://github.com/chanapapan/LSTM-ml-api/blob/main/img/aws1.jpg
+![alt text]https://github.com/chanapapan/LSTM-ml-api/blob/main/img/aws1.jpg
 
 
 
