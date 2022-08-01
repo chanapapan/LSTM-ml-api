@@ -23,7 +23,10 @@ This folder contains the files required to run the flask application on local co
 
 ### To run the application on local
 
-- <code>python .\inference_app.py</code> # start the local app
+start the local app
+```bash
+python .\inference_app.py</code>
+```
 
 - <code>python .\test_api.py</code> # test the local app from local
 
