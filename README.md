@@ -23,22 +23,29 @@ This folder contains the files required to run the flask application on local co
 
 ### To run the application on local
 
-start the local app
+Start the local app
 ```bash
-python .\inference_app.py</code>
+python .\inference_app.py
+```
+Test the local app from local
+```bash
+python .\test_api.py
 ```
 
-- <code>python .\test_api.py</code> # test the local app from local
 
 <img src="https://user-images.githubusercontent.com/69254427/180448051-a2a9266c-bafa-4b41-82cf-15c57eae4055.jpg" width="90%"></img> 
 
 ### To run the application on Docker
-
-- <code>docker image build -t flask_docker .</code>
-
-- <code>docker run -p 5000:5000  -d flask_docker</code>
-
-- <code>curl.exe -H 'Content-Type: application/json' -d "@../input.json"  http://localhost:5000/inference</code> # send json to application on docker to get the sentiment  prediction
+```bash
+docker image build -t flask_docker .
+```
+```bash
+docker run -p 5000:5000  -d flask_docker
+```
+Send json to application on docker to get the sentiment prediction
+```bash
+curl.exe -H 'Content-Type: application/json' -d "@../input.json"  http://localhost:5000/inference
+```
 
 <img src="https://user-images.githubusercontent.com/69254427/180448028-29fa3643-c342-400c-8803-aa7322d5393d.jpg" width="90%"></img> 
 
@@ -72,6 +79,8 @@ This folder contains the files required for deploying the model on AWS Elastic B
 
 <img src="https://user-images.githubusercontent.com/69254427/180448018-2094df2e-5c53-4787-ac29-63ff51ec0844.jpg" width="90%"></img> 
 
--  <code>curl.exe -H 'Content-Type: application/json' -d "@./input.json"  http://chanapasentimentanalysisapp-env-1.eba-ddggkdwc.us-west-2.elasticbeanstalk.com/inference</code>
+```bash
+curl.exe -H 'Content-Type: application/json' -d "@./input.json"  http://chanapasentimentanalysisapp-env-1.eba-ddggkdwc.us-west-2.elasticbeanstalk.com/inference
+```
 
 <img src="https://user-images.githubusercontent.com/69254427/180448024-47a81a0c-9343-4b3e-87fd-532e39e1454c.jpg" width="90%"></img> 
